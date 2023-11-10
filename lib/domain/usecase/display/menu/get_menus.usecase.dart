@@ -8,7 +8,7 @@ import '../../../model/common/result.dart';
 class GetMenusUsecase extends RemoteUsecase<DisplayRepository> {
   final MallType malltype;
 
-  GetMenusUsecase(this.malltype);
+  GetMenusUsecase({required this.malltype});
 
   @override
   Future call(DisplayRepository repository) async {

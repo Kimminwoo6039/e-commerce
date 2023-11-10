@@ -3,10 +3,14 @@ class ErrorResponse {
   final String? code;
   final String? message;
 
-  ErrorResponse({this.status = 'SUCCESS', this.code = '0000', this.message = ''});
+  const ErrorResponse({
+    this.status = 'SUCCESS',
+    this.code = '0000',
+    this.message = '',
+  });
 
   @override
   String toString() {
-    return 'ErrorResponse{status: $status, code: $code, message: $message}';
+    return '{status : $status, code : $code, message : $message}';
   }
 }
