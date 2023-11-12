@@ -1,5 +1,6 @@
 import 'package:common/core/utils/exception/common_exception.dart';
 import 'package:common/core/utils/logger.dart';
+import 'package:common/data/data_source/remote/display.api.dart';
 import 'package:common/data/repository_impl/display.repository.impl.dart';
 import 'package:common/domain/repository/display.repository.dart';
 import 'package:common/domain/usecase/display/display.usecase.dart';
@@ -15,7 +16,7 @@ void main() async {
   setLocator();
 
   try {
-    final test = await DisplayMockApi().getMenusByMallType('marget');
+    final test = await locator<DisPlayApi>().getViewModulesByTabId(10001);
     CustomLogger.logger.d(test);
   } catch(error) {
     final errorData = CommonException.setError(error);
