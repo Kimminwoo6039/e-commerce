@@ -23,8 +23,6 @@ class HomePage extends StatelessWidget {
     });
   }
 }
-
-
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key});
 
