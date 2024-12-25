@@ -38,6 +38,7 @@ class GlobalNavBar extends StatelessWidget {
             labelStyle: textTheme.titleSmall.semiBold,
             unselectedLabelStyle: textTheme.titleSmall,
             unselectedLabelColor: colorScheme.contentSecondary,
+            labelPadding: EdgeInsets.symmetric(horizontal: 4),
           ),
           if (state.status == Status.loading)
             Positioned.fill(
