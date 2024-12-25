@@ -22,6 +22,8 @@ dependencies:
   get_it: ^7.6.0
   logger: ^2.0.2
   mocktail: ^1.0.1
+  bloc_concurrency: ^0.2.5
+  stream_transform: ^2.1.1
 
 dev_dependencies:
   flutter_test:

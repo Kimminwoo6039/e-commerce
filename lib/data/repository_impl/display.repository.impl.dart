@@ -13,7 +13,7 @@ class DisplayRepositoryImpl implements DisplayRepository {
   DisplayRepositoryImpl(this._disPlayApi);
 
   @override
-  Future<ResponseWrapper<List<Menu>>> getMenusByMallType (
+  Future<ResponseWrapper<List<Menu>>> getMenusByMallType(
       {required MallType mallType}) async {
     final reponse = await _disPlayApi.getMenusByMallType(mallType.name);
 
@@ -23,15 +23,13 @@ class DisplayRepositoryImpl implements DisplayRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<ViewModule>>> getViewModultByTabId({required int tabId}) async {
-    final response = await _disPlayApi.getViewModulesByTabId(tabId);
+  Future<ResponseWrapper<List<ViewModule>>> getViewModultByTabId(
+      {required int tabId, required int page}) async {
+    final response = await _disPlayApi.getViewModulesByTabId(tabId, page);
 
-    return response.toModel<List<ViewModule>> (
-      response.data?.map((viewModulDto) => viewModulDto.toModel()).toList() ?? []);
+    return response.toModel<List<ViewModule>>(
+        response.data?.map((viewModulDto) => viewModulDto.toModel()).toList() ??
+            []);
     throw UnimplementedError();
   }
-
-
-
-
 }

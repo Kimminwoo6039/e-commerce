@@ -16,13 +16,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MallTypeCubit, MallType>(builder: (context, state) {
       return BlocProvider(
-        create: (_) =>
-            MenuBloc(locator<DisplayUsecase>())..add(MenuIntiialized(state)),
+        create: (_) => locator<MenuBloc>()..add(MenuIntiialized(state)),
         child: HomePageView(),
       );
     });
   }
 }
+
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key});
 
@@ -36,7 +36,9 @@ class HomePageView extends StatelessWidget {
         builder: (_, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(child: CircularProgressIndicator(),);
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             case Status.loading:
               return DefaultTabController(
                 length: state.menus.length,
@@ -44,7 +46,7 @@ class HomePageView extends StatelessWidget {
                 child: Column(
                   children: [
                     GlobalNavBar(state.menus),
-                    GlobalNavBarView(state.menus,state.mallType),
+                    GlobalNavBarView(state.menus, state.mallType),
                   ],
                 ),
               );
@@ -55,7 +57,7 @@ class HomePageView extends StatelessWidget {
                 child: Column(
                   children: [
                     GlobalNavBar(state.menus),
-                    GlobalNavBarView(state.menus,state.mallType),
+                    GlobalNavBarView(state.menus, state.mallType),
                   ],
                 ),
               );

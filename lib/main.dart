@@ -15,13 +15,13 @@ import 'presentation/routes/routes.dart';
 void main() async {
   setLocator();
 
-  try {
-    final test = await locator<DisPlayApi>().getViewModulesByTabId(10001);
-    CustomLogger.logger.d(test);
-  } catch(error) {
-    final errorData = CommonException.setError(error);
-    CustomLogger.logger.e(errorData);
-  }
+  // try {
+  //   final test = await locator<DisPlayApi>().getViewModulesByTabId(10001);
+  //   CustomLogger.logger.d(test);
+  // } catch(error) {
+  //   final errorData = CommonException.setError(error);
+  //   CustomLogger.logger.e(errorData);
+  // }
   runApp(const MyApp());
 }
 
@@ -32,8 +32,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
+
       /// routes/routes.dart 경로지정
       theme: CustomThemeData.themeData,
+
       /// core/theme 디자인 지정
     );
   }

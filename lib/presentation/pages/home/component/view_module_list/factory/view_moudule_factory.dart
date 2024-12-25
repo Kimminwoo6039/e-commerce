@@ -18,7 +18,6 @@ class ViewModuleFactory {
     for (final module in Modules.values) {
       final String name = module.name.toSnakeCase();
       if (name.contains(type)) {
-        print(module);
         return module.toWidget() as Widget;
       }
     }

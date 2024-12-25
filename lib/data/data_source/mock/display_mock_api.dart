@@ -24,10 +24,20 @@ class DisplayMockApi implements DisPlayApi {
   }
 
   @override
-  Future<ResponseWrapper<List<ViewModuleDto>>> getViewModulesByTabId(int tabId) {
+  Future<ResponseWrapper<List<ViewModuleDto>>> getViewModulesByTabId(
+      int tabId, int page) {
+    if (page == 4) {
+      return Future(() => ResponseWrapper(
+            status: 'SUCCESS',
+            code: '0000',
+            message: '',
+            data: [],
+          ));
+    }
+
     late String source;
     final endofTabId = tabId % 10;
-    switch(endofTabId) {
+    switch (endofTabId) {
       case 1:
         source = DisplayMockData.viewModulesByTabIdCaseOne;
       case 2:
@@ -40,7 +50,8 @@ class DisplayMockApi implements DisPlayApi {
         source = DisplayMockData.viewModulesByTabIdCaseFive;
     }
 
-    return Future(() => ResponseWrapper(
+    return Future(
+      () => ResponseWrapper(
         status: 'SUCCESS',
         code: '0000',
         message: '',
@@ -57,6 +68,7 @@ class DisplayMockApi implements DisPlayApi {
 
     return menus;
   }
+
   /// 뷰 모듈
   List<ViewModuleDto> viewModuleParser(String source) {
     List<ViewModuleDto> menus = [];
@@ -65,5 +77,4 @@ class DisplayMockApi implements DisPlayApi {
 
     return menus;
   }
-
 }

@@ -23,7 +23,7 @@ class GlobalNavBarView extends StatelessWidget {
         menus.length,
         (index) {
           return BlocProvider(
-            create: (_) => ViewModuleBloc(locator<DisplayUsecase>())
+            create: (_) => locator<ViewModuleBloc>()
               ..add(ViewModultInitalized(menus[index].tabId)),
             child: const ViewModuleList(),
           );
