@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/constant.dart';
 import '../../../../../domain/model/display/menu/menu.model.dart';
+import '../view_module_list/view_module_list.dart';
 
 class GlobalNavBarView extends StatelessWidget {
   const GlobalNavBarView(this.menus, this.mallType, {super.key});
@@ -29,50 +30,5 @@ class GlobalNavBarView extends StatelessWidget {
         },
       ),
     ));
-  }
-}
-
-class ViewModuleList extends StatelessWidget {
-  const ViewModuleList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ViewModuleBloc, ViewModuleState>(builder: (_, state) {
-      switch (state.status) {
-        case Status.initial:
-        case Status.loading:
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        case Status.success:
-          return Column(
-            children: [
-              Container(
-                  height: 50,
-                  color: Colors.deepOrangeAccent,
-                  child: Center(child: Text('${state.tabId}'))),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (_, index) {
-                    return SizedBox(
-                      height: 200,
-                      child:
-                          Center(child: Text('${state.viewModules[index].type}')),
-                    );
-                  },
-                  separatorBuilder: (_, index) => Divider(
-                    thickness: 4,
-                  ),
-                  itemCount: state.viewModules.length,
-                ),
-              ),
-            ],
-          );
-        case Status.error:
-          return const Center(
-            child: Text("error"),
-          );
-      }
-    });
   }
 }

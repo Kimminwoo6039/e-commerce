@@ -4,6 +4,8 @@ import 'package:common/core/utils/logger.dart';
 import 'package:common/domain/model/display/display.model.dart';
 import 'package:common/domain/usecase/display/display.usecase.dart';
 import 'package:common/domain/usecase/display/view_module/get_view_modules.usecase.dart';
+import 'package:common/presentation/pages/home/component/view_module_list/factory/view_moudule_factory.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,7 +21,7 @@ part 'view_module_bloc.freezed.dart';
 class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
   final DisplayUsecase _displayUsecase;
 
-  ViewModuleBloc(this._displayUsecase) : super(ViewModuleState()){
+  ViewModuleBloc(this._displayUsecase) : super(ViewModuleState()) {
     on<ViewModultInitalized>(_onViewModuleInitalized);
   }
 
@@ -28,18 +30,21 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
     emit(state.copyWith(status: Status.loading));
     final tabId = event.tabId;
     try {
-
       final response = await _fetch(tabId);
-      response.when(
+      response.when(Success: (data) {
+        ViewModuleFactory viewModuleFactory = ViewModuleFactory();
 
-          Success: (viewModules) {
-            emit(state.copyWith(status: Status.success , tabId: tabId,viewModules: viewModules));
-          },
+        // 명시적으로 List<Widget>으로 캐스팅
+        final List<Widget> viewModules = data.map<Widget>((e) {
+          final widget = viewModuleFactory.textToWidget(e);
+          return widget;
+        }).toList();
 
-          failure: (error) {
-            emit(state.copyWith( status: Status.error, error:error));
-          });
-
+        emit(state.copyWith(
+            status: Status.success, tabId: tabId, viewModules: viewModules));
+      }, failure: (error) {
+        emit(state.copyWith(status: Status.error, error: error));
+      });
     } catch (error) {
       CustomLogger.logger.e(error);
       emit(state.copyWith(
