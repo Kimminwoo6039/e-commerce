@@ -21,6 +21,8 @@ class GlobalNavBar extends StatelessWidget {
       return Stack(
         children: [
           TabBar(
+            isScrollable: true,  // 스크롤 가능하게 설정
+            tabAlignment: TabAlignment.start,  // 왼쪽 정렬
             indicator: UnderlineTabIndicator(
               borderSide: BorderSide(
                 color: colorScheme.primary,
