@@ -21,8 +21,10 @@ class GlobalNavBar extends StatelessWidget {
       return Stack(
         children: [
           TabBar(
-            isScrollable: true,  // 스크롤 가능하게 설정
-            tabAlignment: TabAlignment.start,  // 왼쪽 정렬
+            isScrollable: true,
+            // 스크롤 가능하게 설정
+            tabAlignment: TabAlignment.start,
+            // 왼쪽 정렬
             indicator: UnderlineTabIndicator(
               borderSide: BorderSide(
                 color: colorScheme.primary,
@@ -36,6 +38,7 @@ class GlobalNavBar extends StatelessWidget {
               ),
             ),
             indicatorSize: TabBarIndicatorSize.label,
+            labelColor: colorScheme.primary,
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: textTheme.titleSmall.semiBold,
             unselectedLabelStyle: textTheme.titleSmall,
@@ -46,7 +49,10 @@ class GlobalNavBar extends StatelessWidget {
               child: ColoredBox(
                 color: Colors.black.withOpacity(0.2),
                 child: Center(
-                  child: Transform.scale(child: CircularProgressIndicator(),scale: 0.5,),
+                  child: Transform.scale(
+                    child: CircularProgressIndicator(),
+                    scale: 0.5,
+                  ),
                 ),
               ),
             )
